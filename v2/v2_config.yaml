@@ -1,0 +1,131 @@
+# Configuration YAML v2
+
+network:
+  topo:
+    class: SingleSwitchTopo
+    args:
+      - 5
+
+  link:
+    bw: null    # e.g., 100 (Mb/s)
+    delay: null  # e.g., 1s, 1ms
+    jitter: null  # e.g., 1s, 1ms
+    loss: null    # e.g.,1 (percent)
+
+  node:
+    cpu: -1
+    cores: null
+
+  test:
+    iperf: -1
+
+
+# info: https://github.com/haochenpan/nw3/blob/57bd04294abaf5c9af5eedddc1ac7616f132ff3b/mngeth/config.yaml
+
+#network:
+#  topo:
+#    class: LinearTopo
+#    args:
+#      - 5
+#      - 1
+#
+#  link:
+#    bw: null    # e.g., 100 (Mb/s)
+#    delay: 500ms  # e.g., 1s, 1ms
+#    jitter: 10ms  # e.g., 1s, 1ms
+#    loss: null    # e.g.,1 (percent)
+#
+#  node:
+#    cpu: -1
+#    cores: null
+#
+#  test:
+#    iperf: -1
+
+
+#network:
+#  topo:
+#    class: FatTreeTopo
+#    args:
+#      - 3
+#      - 3
+#      - 5
+#      - 1
+#
+#  link:
+#    bw: null    # e.g., 100 (Mb/s)
+#    delay: null  # e.g., 1s, 1ms
+#    jitter: null  # e.g., 1s, 1ms
+#    loss: null    # e.g.,1 (percent)
+#
+#  node:
+#    cpu: -1
+#    cores: null
+#
+#  test:
+#    iperf: -1
+
+
+# 1) uncomment the part below, comment all other parts
+# 2) run command: . run.sh 30
+#network:
+#  topo:
+#    class: FatTreeTopo
+#    args:
+#      - 18
+#      - 18
+#      - 30
+#      - 1
+#
+#  link:
+#    bw: null    # e.g., 100 (Mb/s)
+#    delay: 500ms  # e.g., 1s, 1ms
+#    jitter: null  # e.g., 1s, 1ms
+#    loss: null    # e.g.,1 (percent)
+#
+#  node:
+#    cpu: -1
+#    cores: null
+#
+#  test:
+#    iperf: -1
+
+# 1) uncomment the part below, comment all other parts
+# 2) calculate the "cpu" argument: 1 / (10 * <# of cpu>), round to some decimal number
+# when mininet starts, you should see output like:
+# *** Configuring hosts
+# h1 (cfs 10000/100000us) h2 (cfs 10000/100000us) h3 (cfs -1/100000us) h4 (cfs -1/100000us) h5 (cfs -1/100000us)
+# if not so, please adjust the argument so that "h1 (cfs 10000/100000us) h2 (cfs 10000/100000us)" appears
+# 3) run command: . run.sh 5
+#network:
+#  topo:
+#    class: FatTreeTopoSlow2Hosts
+#    args:
+#      - 3
+#      - 3
+#      - 5
+#      - 1
+#
+#  linkh1h2:
+#    bw: null    # e.g., 100 (Mb/s)
+#    delay: 500ms  # e.g., 1s, 1ms
+#    jitter: null  # e.g., 1s, 1ms
+#    loss: null    # e.g.,1 (percent)
+#
+#  link:
+#    bw: null    # e.g., 100 (Mb/s)
+#    delay: 500ms  # e.g., 1s, 1ms
+#    jitter: null  # e.g., 1s, 1ms
+#    loss: null    # e.g.,1 (percent)
+#
+#  node:
+#    cpu: -1
+#    cores: null
+#
+#  nodeh1h2:
+#    cpu: 0.1 # NOT RIGHT, see above
+#    cores: null
+#
+#  test:
+#    iperf: -1
+
