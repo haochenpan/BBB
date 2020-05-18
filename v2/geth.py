@@ -19,18 +19,18 @@ node_1_start = (
     f"nohup geth --datadir=$DDR1 --networkid {network_id} --port {port} "
     f"--nat extip:{nodes[0]} --netrestrict 10.0.0.0/24 "
     f"--mine --minerthreads={miner_thread} --etherbase={bases[0]} "
-    f"> ~/nw3/mngeth/data/nohup-{nodes[0]}.out &")
+    f"> ~/BBB/data/nohup-{nodes[0]}.out &")
 node_n_start = (
     "nohup geth --datadir $DDR{n} --networkid {networkid} --port {port} "
     "--nat extip:{ip} --netrestrict 10.0.0.0/24 "
     "--bootnodes $ENODE_ADDRESS "
     f"--mine --minerthreads={miner_thread} "
     "--etherbase={etherbase} "
-    "> ~/nw3/mngeth/data/nohup-{ip}.out &")
+    "> ~/BBB/data/nohup-{ip}.out &")
 node_n_check_join = "geth attach $DDR{}/geth.ipc --exec admin.peers"
 
 node_1_check_blocks = (f"geth attach $DDR1/geth.ipc "
-                       f"--exec 'eth.getBlock(\"latest\")' > ~/nw3/mngeth/data/nohup-node_1_block.out")
+                       f"--exec 'eth.getBlock(\"latest\")' > ~/BBB/data/nohup-node_1_block.out")
 
 
 def read_get_block(file="./data/nohup-node_1_block.out"):
