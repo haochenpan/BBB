@@ -7,10 +7,8 @@
 - execute the following
     ```shell script
     sudo su # mininet requires the root priviledge
-    cd
-    git clone https://github.com/haochenpan/nw3.git
-    cd nw3/mngeth
-    . setup.sh # to install Go environment, Geth, and Mininet
+    cd && git clone https://github.com/haochenpan/BBB.git
+    cd BBB && . setup.sh # to install Go environment, Geth, and Mininet
     . run.sh 5 # to start evaluation with 5 miners, replace 5 with any other natural number
     ```
  
