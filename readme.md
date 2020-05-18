@@ -10,6 +10,9 @@
     cd && git clone https://github.com/haochenpan/BBB.git
     cd ~/BBB && . setup.sh # to install Go environment, Geth, and Mininet
     cd ~/BBB && . run.sh 5 # to start evaluation with 5 miners, replace 5 with any other natural number
+    # when you run it for the first time, it may not generate some throughput numbers because 
+    # geth (Ethereum) is preparing the DAG files (check the logs under hosts folder). 
+    # After a few more runs, logs (and henchforth, throughput numbers) can then be generated.
     ```
  
  
@@ -27,4 +30,3 @@
 - run.sh: the entry point of an evaluation
 - setup.sh: install this project
 
-### Previous [Repo](https://github.com/haochenpan/nw3/tree/master/mngeth)
