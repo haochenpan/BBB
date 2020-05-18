@@ -9,7 +9,7 @@
     sudo su # mininet requires the root priviledge
     cd && git clone https://github.com/haochenpan/BBB.git
     cd ~/BBB && . setup.sh # to install Go environment, Geth, and Mininet
-    cd ~/BBB &&. run.sh 5 # to start evaluation with 5 miners, replace 5 with any other natural number
+    cd ~/BBB && . run.sh 5 # to start evaluation with 5 miners, replace 5 with any other natural number
     ```
  
  
