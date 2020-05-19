@@ -8,6 +8,7 @@ from mininet.node import CPULimitedHost
 from mininet.link import TCLink
 from mininet.util import dumpNodeConnections
 from mininet.log import setLogLevel
+from mininet.cli import CLI
 
 from v2_topos import *
 from v2_config import conf
@@ -85,22 +86,26 @@ def main():
     delay_command(1, node_1_start)
     for i in range(2, num_of_miners + 1):
         delay_command(i, gen_enode)
-        delay_command(i, node_n_start.format(n=i, networkid=network_id, port=port,
-                                             ip=nodes[i - 1], etherbase=bases[i % len(bases)]))
-
+        delay_command(i, node_n_start.format(
+            n=i, networkid=network_id, port=port,
+            ip=nodes[i - 1], etherbase=bases[i % len(bases)]))
         delay_command(i, node_n_check_join.format(i))
 
     time1 = time()
-    for i in range(300):
+    while True:
         delay_command(1, node_1_check_blocks, False)
         delta = time() - time1
         num = read_get_block()
         throughput = num / delta
-        print("i =", i, "total # of blocks = ", num, "throughput = ", round(throughput, 2), "blocks/sec")
-        sleep(1)
+        print("total # of blocks = ", num, "throughput = ", round(throughput, 2), "blocks/sec")
 
-    time2 = time()
-    print("delta = ", time2 - time1)
+        if delta > runtime:
+            break
+        else:
+            print(delta)
+            sleep(2)
+
+    # print("delta = ", time2 - time1)
     # enables client control
     # CLI(net)
 

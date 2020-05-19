@@ -23,12 +23,9 @@ while [ $cur_miner -le $num_of_miners ]; do
   geth init --datadir ${!dirName} ~/BBB/genesis.json
 
   # copy keys
-  cp ~/BBB/keys/UTC--2020-03-07T23-25-18.301273092Z--67e37abe6fb7bb2b0d61b9c6f53c71623ae65551 ~/BBB/hosts/ethData$cur_miner/keystore
-  cp ~/BBB/keys/UTC--2020-03-07T23-27-12.170957487Z--2dec65f7f6fecef9088afed7ab41ad0f1173ddb4 ~/BBB/hosts/ethData$cur_miner/keystore
-  cp ~/BBB/keys/UTC--2020-03-07T23-27-53.050585459Z--0213af577d12cf11a5baf5a869e0b1305684ca0a ~/BBB/hosts/ethData$cur_miner/keystore
-  cp ~/BBB/keys/UTC--2020-03-16T21-29-01.688713168Z--7d8466475a66c4363da52494af4a3c20298f5f73 ~/BBB/hosts/ethData$cur_miner/keystore
+  cp ~/BBB/keys/UTC--2020-05-18T14-37-19.251956045Z--f244f9d51ac26122b1d99fb8bd4e8cc3daf498f7 ~/BBB/hosts/ethData$cur_miner/keystore
+  cp ~/BBB/keys/UTC--2020-05-18T14-38-18.472973295Z--c838c31639157d40e029c18fb54226212c060c0b ~/BBB/hosts/ethData$cur_miner/keystore
+  cp ~/BBB/keys/UTC--2020-05-18T14-38-29.783530609Z--2292d6fbd29694edb25f68a13df023bfe32133f3 ~/BBB/hosts/ethData$cur_miner/keystore
+  cp ~/BBB/keys/UTC--2020-05-18T14-38-37.867695000Z--2be146309b4b01b0a0ed51c26cb14bc82917540f ~/BBB/hosts/ethData$cur_miner/keystore
   ((cur_miner++))
 done
-
-
-

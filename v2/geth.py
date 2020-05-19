@@ -5,6 +5,8 @@ miner_thread = 3
 network_id = 714715
 port = 30303
 
+runtime = 800
+
 nodes = [f"10.0.0.{i}" for i in range(1, num_of_miners + 1)]
 b1 = "0x67e37abe6fb7bb2b0d61b9c6f53c71623ae65551"
 b2 = "0x2dec65f7f6fecef9088afed7ab41ad0f1173ddb4"
