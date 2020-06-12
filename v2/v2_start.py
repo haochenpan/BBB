@@ -12,7 +12,11 @@ from mininet.cli import CLI
 
 from v2_topos import *
 from v2_config import conf
-from geth import *
+
+from threading import Thread
+
+
+# from geth import *
 
 
 def get_topology():
@@ -58,6 +62,10 @@ def test_topology(topo: Topo, net: Mininet):
             [net.iperf((i, j)) for i in hosts for j in hosts if i != j]
 
 
+def run_rc_client(host, idx):
+    host.cmdPrint(f"cd ~/RC && go run *.go {idx}")
+
+
 def main():
     def delay_command(host, cmd, print=True):
         sleep(0.5)
@@ -83,32 +91,45 @@ def main():
         h.cmdPrint("cd ~")
         h.cmdPrint("ls")
 
-    delay_command(1, node_1_start)
-    for i in range(2, num_of_miners + 1):
-        delay_command(i, gen_enode)
-        delay_command(i, node_n_start.format(
-            n=i, networkid=network_id, port=port,
-            ip=nodes[i - 1], etherbase=bases[i % len(bases)]))
-        delay_command(i, node_n_check_join.format(i))
-
-    time1 = time()
-    while True:
-        delay_command(1, node_1_check_blocks, False)
-        delta = time() - time1
-        num = read_get_block()
-        throughput = num / delta
-        print("total # of blocks = ", num, "throughput = ", round(throughput, 2), "blocks/sec")
-
-        if delta > runtime:
-            break
-        else:
-            print(delta)
-            sleep(2)
+    # delay_command(1, node_1_start)
+    # for i in range(2, num_of_miners + 1):
+    #     delay_command(i, gen_enode)
+    #     delay_command(i, node_n_start.format(
+    #         n=i, networkid=network_id, port=port,
+    #         ip=nodes[i - 1], etherbase=bases[i % len(bases)]))
+    #     delay_command(i, node_n_check_join.format(i))
+    #
+    # time1 = time()
+    # while True:
+    #     delay_command(1, node_1_check_blocks, False)
+    #     delta = time() - time1
+    #     num = read_get_block()
+    #     throughput = num / delta
+    #     print("total # of blocks = ", num, "throughput = ", round(throughput, 2), "blocks/sec")
+    #
+    #     if delta > runtime:
+    #         break
+    #     else:
+    #         print(delta)
+    #         sleep(2)
 
     # print("delta = ", time2 - time1)
     # enables client control
     # CLI(net)
 
+    ts = []
+    for i in range(10):
+        t = Thread(target=run_rc_client, args=(hs[i], i))
+        ts.append(t)
+    for t in ts:
+        t.start()
+    sleep(2)
+    t0 = Thread(target=run_rc_client, args=(hs[10], -1))
+    t0.start()
+
+    for t in ts:
+        t.join()
+    t0.join()
     # stop the network
     net.stop()
 

@@ -4,7 +4,7 @@ network:
   topo:
     class: SingleSwitchTopo
     args:
-      - 5
+      - 11
 
   link:
     bw: null    # e.g., 100 (Mb/s)
